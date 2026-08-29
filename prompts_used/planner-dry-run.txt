@@ -1,0 +1,15 @@
+@planner
+
+Add bulk task status update API.
+
+Allow updating multiple activities in one request.
+
+Support partial failures.
+
+Create audit entry per updated activity.
+
+Follow StoreOps architecture rules.
+
+Do not implement.
+
+Only create specification and sprint contracts.

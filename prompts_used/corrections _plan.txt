@@ -1,0 +1,22 @@
+Review the generated:
+
+- .harness/output/spec.md
+- .harness/output/sprint-1-contract.md
+
+Improve the planning artefacts without modifying application code.
+
+Specifically verify:
+
+1. PATCH /api/activities/bulk-status request and response behavior is explicit.
+2. Partial success and partial failure behavior is deterministic.
+3. Every successfully updated activity produces an audit-entry outcome.
+4. Invalid, missing, and non-updatable activity IDs have defined outcomes.
+5. Route -> Service -> Repository layering is preserved.
+6. Cross-module side effects use EventBus only.
+7. Every acceptance criterion is written using GIVEN / WHEN / THEN.
+8. Every acceptance criterion is mapped to at least one required test.
+9. Scope and out-of-scope boundaries are explicit.
+10. spec.md retains STATUS: AWAITING_APPROVAL.
+
+Do not implement code.
+Only update the planning artifacts.
