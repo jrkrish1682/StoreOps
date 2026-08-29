@@ -160,6 +160,29 @@ class ActivitiesRepository:
         total = len(filtered_tasks)
         tasks = filtered_tasks[skip : skip + limit]
         return [Task.model_validate(t) for t in tasks], total
+    async def bulk_update_status(
+        self,
+        activity_ids: list[str],
+        new_status: str,
+    ) -> list[Task]:
+        """Update status for multiple tasks.
+
+        Args:
+            activity_ids: List of task IDs
+            new_status: New status value
+
+        Returns:
+            List of updated tasks (only successful ones)
+        """
+        updated_tasks: list[Task] = []
+        for task_id in activity_ids:
+            task_data = self._tasks.get(task_id)
+            if task_data:
+                task_data["status"] = new_status
+                task_data["updated_at"] = datetime.now(UTC)
+                updated_tasks.append(Task.model_validate(task_data))
+        return updated_tasks
+
     def reset(self) -> None:
         """Reset repository (for testing)."""
         self._tasks.clear()
