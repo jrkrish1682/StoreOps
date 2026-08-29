@@ -284,6 +284,22 @@ generated/
 *~
 
 ################################################################################
+# Claude Code Harness Configuration
+################################################################################
+# Ignore temporary output files in harness
+.harness/output/**
+!.harness/output/.gitkeep
+
+# Keep harness tracking and skill files
+!.harness/
+!.harness/agents/
+!.harness/agents/**
+!.harness/skills/
+!.harness/skills/**
+!.harness/reviews/
+!.harness/reviews/**
+
+################################################################################
 # Keep these important files
 ################################################################################
 !.gitkeep

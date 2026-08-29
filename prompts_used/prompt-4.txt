@@ -1,0 +1,29 @@
+Read docs/repository-assessment.md and inspect the current StoreOps source code.
+
+We are now starting the Claude Code Development Harness implementation.
+
+Do not modify application source code.
+
+Create the following directory structure:
+
+.harness/
+  agents/
+  skills/
+    app-context/
+    architecture-principles/
+    coding-conventions/
+    component-patterns/
+    how-to-test/
+    how-to-review/
+    evaluation-rules/
+    sprint-decomposition/
+  output/
+  reviews/
+
+Create a .gitkeep file in output and reviews where necessary.
+
+Update .gitignore so that temporary files under .harness/output are ignored, but .harness/reviews and all skill and agent files remain tracked.
+
+Do not create the agent files or skill content yet.
+
+After completing the structure, summarize the files and directories created.
