@@ -1,0 +1,177 @@
+Read:
+
+- all files under .harness/agents/
+- all files under .harness/skills/
+- docs/repository-assessment.md
+
+Create the root CLAUDE.md file for the StoreOps Claude Code Development Harness.
+
+This file is the orchestrator.
+
+====================================================
+ENTRY POINT
+====================================================
+
+Developer invocation format:
+
+@planner <feature request>
+
+Example:
+
+@planner Add bulk task status update API
+
+====================================================
+PLANNER PHASE
+====================================================
+
+Invoke planner.agent.md
+
+Planner produces:
+
+.harness/output/spec.md
+
+.harness/output/sprint-1-contract.md
+
+Requirements:
+
+- spec.md must contain
+
+STATUS: AWAITING_APPROVAL
+
+- Planner stops after specification creation
+
+- No application code generated
+
+====================================================
+APPROVAL PHASE
+====================================================
+
+Only continue when developer enters:
+
+APPROVED
+
+If approval not received:
+
+STOP
+
+====================================================
+EXECUTION PHASE
+====================================================
+
+For each sprint contract:
+
+1. Run Generator
+2. Run Evaluator
+3. Read evaluator verdict
+
+====================================================
+VERDICT ROUTING
+====================================================
+
+VERDICT PASS
+
+- Execute Monitor
+- Archive sprint artifacts
+- Continue to next sprint
+
+VERDICT CONDITIONAL_PASS
+
+- Retry Generator once unless issues are documentation-only
+
+VERDICT FAIL
+
+- Feed evaluator remediation back to Generator
+- Retry
+
+====================================================
+ITERATION LIMIT
+====================================================
+
+Maximum:
+
+3 Generator/Evaluator cycles per sprint
+
+After third unsuccessful attempt:
+
+Create:
+
+.harness/output/escalation.md
+
+====================================================
+ESCALATION FILE
+====================================================
+
+Must contain:
+
+- Sprint ID
+- Iteration Count
+- Failed Checks
+- Hard Gate Violations
+- Blocking Issues
+- Files Affected
+- Recommended Developer Action
+
+====================================================
+CONTEXT MANAGEMENT
+====================================================
+
+Planner receives:
+
+- app-context
+- architecture-principles
+- sprint-decomposition
+
+Generator receives:
+
+- app-context
+- architecture-principles
+- coding-conventions
+- component-patterns
+- how-to-test
+
+Evaluator receives:
+
+- architecture-principles
+- how-to-review
+- evaluation-rules
+
+Monitor receives:
+
+- generator-summary
+- evaluator-feedback
+
+Context must reset between sprints.
+
+Agents use handoff files as source of truth.
+
+====================================================
+CI/CD STRATEGY
+====================================================
+
+Harness validation happens before pipeline validation.
+
+Harness supplements CI/CD.
+
+Harness does not replace CI/CD.
+
+====================================================
+ARCHIVE STRATEGY
+====================================================
+
+Store evidence in:
+
+.harness/reviews/
+
+Archive:
+
+- generator-summary
+- evaluator-feedback
+- run-log
+
+Use sprint identifiers.
+
+====================================================
+
+Generate production-quality CLAUDE.md.
+
+The file must contain operational instructions, not architectural commentary.

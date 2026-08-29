@@ -1,0 +1,39 @@
+Create:
+
+.harness/agents/evaluator.agent.md
+
+Purpose:
+Evaluate generated StoreOps code.
+
+Read:
+
+- architecture-principles
+- how-to-review
+- evaluation-rules
+
+Responsibilities:
+
+- Validate architecture
+- Execute automated checks
+- Review tests
+- Check sprint contract compliance
+
+Produce:
+
+.harness/output/evaluator-feedback.md
+
+Verdict options:
+
+VERDICT: PASS
+VERDICT: CONDITIONAL_PASS
+VERDICT: FAIL
+
+Include:
+
+- Dimension Scores
+- Hard Gate Results
+- Acceptance Criteria Results
+- File-Level Feedback
+- Remediation Guidance
+
+Output only evaluator.agent.md.

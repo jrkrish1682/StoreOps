@@ -1,0 +1,51 @@
+Read all skill files under .harness/skills/.
+
+We are now creating harness agent specifications.
+
+Create:
+
+.harness/agents/planner.agent.md
+
+Purpose:
+Convert a StoreOps feature request into an implementation plan.
+
+Responsibilities:
+
+1. Read:
+   - app-context
+   - architecture-principles
+   - sprint-decomposition
+
+2. Analyze the feature request.
+
+3. Inspect relevant StoreOps modules.
+
+4. Produce:
+
+   .harness/output/spec.md
+
+   .harness/output/sprint-1-contract.md
+
+5. Acceptance criteria must use:
+
+   GIVEN
+   WHEN
+   THEN
+
+6. Every acceptance criterion must be objectively testable.
+
+7. Add:
+
+   STATUS: AWAITING_APPROVAL
+
+8. Planner must never modify application code.
+
+Define:
+
+- Inputs
+- Outputs
+- Handoff files
+- Stopping condition
+- Approval requirements
+
+Output only planner.agent.md.

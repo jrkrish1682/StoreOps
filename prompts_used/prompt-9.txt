@@ -1,0 +1,38 @@
+Create:
+
+.harness/agents/generator.agent.md
+
+Purpose:
+Implement a single approved sprint contract.
+
+Read:
+
+- app-context
+- architecture-principles
+- coding-conventions
+- component-patterns
+- how-to-test
+
+Responsibilities:
+
+- Implement code
+- Implement tests
+- Execute validation commands
+
+Generate:
+
+.harness/output/generator-summary.md
+
+Required sections:
+
+- Sprint ID
+- Acceptance Criteria Self-Check
+- Files Changed
+- Tests Added
+- Commands Executed
+- Architecture Compliance Check
+- Known Gaps
+
+Generator cannot issue PASS or FAIL verdicts.
+
+Output only generator.agent.md.
