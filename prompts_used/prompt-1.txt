@@ -1,0 +1,220 @@
+You are an expert Python Architect and Senior FastAPI Engineer.
+Build a complete StoreOps Retail Operations Management REST API using Python 3.11 and FastAPI.
+IMPORTANT:
+Generate production-quality scaffold code, not pseudo-code.
+The application must compile successfully and follow clean architecture principles.
+====================================================
+BUSINESS DOMAIN
+====================================================
+StoreOps is a Retail Operations Management platform.
+The system manages:
+1. Activities
+   - Operational tasks
+   - Compliance audits
+   - Restocking
+   - Planogram updates
+2. Programmes
+   - Store initiatives
+   - Campaigns
+   - Rollouts
+3. Staff
+   - Store employees
+   - Department Leads
+   - Store Managers
+   - Regional Managers
+4. Alerts
+   - Notifications
+   - Escalations
+   - SLA Breach Alerts
+5. Reports
+   - Store summaries
+   - Regional summaries
+   - Department performance reports
+
+====================================================
+TECHNICAL STACK
+====================================================
+Python 3.12
+FastAPI
+Pydantic V2
+Pytest
+HTTPX
+Ruff
+Mypy
+Uvicorn
+Docker support
+
+====================================================
+PROJECT STRUCTURE
+====================================================
+Create:
+src/
+    activities/
+        routes.py
+        service.py
+        repository.py
+        models.py
+
+    programmes/
+        routes.py
+        service.py
+        repository.py
+        models.py
+
+    staff/
+        routes.py
+        service.py
+        repository.py
+        models.py
+
+    alerts/
+        routes.py
+        service.py
+        repository.py
+        models.py
+
+    reports/
+        routes.py
+        service.py
+        repository.py
+        models.py
+
+    shared/
+        errors.py
+        event_bus.py
+        dependencies.py
+
+    main.py
+
+tests/
+
+Dockerfile
+
+docker-compose.yml
+
+requirements.txt
+
+README.md
+
+====================================================
+ARCHITECTURE RULES
+====================================================
+
+Mandatory 3-layer architecture.
+
+Routes
+    -> Service
+        -> Repository
+
+Rules:
+
+1. Routes may call Services only.
+
+2. Services may call Repositories only.
+
+3. Repositories must not call Services.
+
+4. Repositories must not call external services.
+
+5. No business logic in Routes.
+
+6. Cross-module repository access is prohibited.
+
+Example:
+
+ActivitiesService cannot import ProgrammesRepository.
+
+7. Read operations may use another module's Service.
+
+8. Cross-module side effects must use EventBus only.
+
+Example:
+
+Activities module must publish event:
+
+TASK_COMPLETED
+
+Alerts module consumes event.
+
+No direct AlertsService invocation.
+
+====================================================
+ERROR HANDLING
+====================================================
+
+Create AppError hierarchy.
+
+AppError:
+
+- error_code
+- message
+- status_code
+
+Create:
+
+ValidationError
+NotFoundError
+BusinessRuleViolationError
+
+Never use:
+
+raise Exception(...)
+raise RuntimeError(...)
+
+Services must always raise AppError types.
+
+====================================================
+EVENT BUS
+====================================================
+
+Implement lightweight in-memory EventBus.
+
+Support:
+
+publish(event_name, payload)
+
+subscribe(event_name, handler)
+
+Create sample events:
+
+TASK_COMPLETED
+
+PROGRAMME_CREATED
+
+TASK_OVERDUE
+
+SLA_BREACH
+
+Demonstrate event registration.
+
+====================================================
+ENTITIES
+====================================================
+
+ACTIVITIES
+
+Task
+
+Fields:
+
+id
+title
+description
+status
+priority
+category
+assigned_user_id
+due_date
+
+Enums:
+
+TaskStatus
+
+TODO
+IN_PROGRESS
+DONE
+BLOCKED
+
+TaskPriority
+
+LOW
