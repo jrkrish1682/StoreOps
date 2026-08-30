@@ -1,0 +1,16 @@
+Review the generated StoreOps project.
+Run a virtual code review.
+Identify:
+- syntax errors
+- import errors
+- FastAPI issues
+- typing issues
+- Ruff violations
+- architectural violations
+
+Fix all issues.
+The code must:
+1. Pass mypy
+2. Pass ruff
+3. Pass pytest
+Apply the fixes directly.

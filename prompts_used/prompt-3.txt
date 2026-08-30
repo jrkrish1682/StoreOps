@@ -1,0 +1,32 @@
+Analyze this StoreOps repository from the codebase itself.
+
+Perform a complete architecture assessment.
+
+Create:
+
+docs/repository-assessment.md
+
+Document:
+
+1. Module structure
+2. Route -> Service -> Repository architecture
+3. EventBus implementation
+4. Error handling strategy
+5. Testing conventions
+6. Dependency boundaries
+7. Coding standards
+
+Add a section:
+
+"Harness Skill Mapping"
+
+Recommend skill files:
+
+- app-context
+- architecture-principles
+- coding-conventions
+- how-to-test
+- how-to-review
+- evaluation-rules
+
+Do not modify source code.

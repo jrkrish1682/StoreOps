@@ -1,0 +1,116 @@
+Read the following:
+
+- docs/repository-assessment.md
+- all source code under src/
+- all tests under tests/
+
+We are now creating the foundation skills for the StoreOps Claude Code Development Harness.
+
+Create:
+
+1. .harness/skills/app-context/SKILL.md
+2. .harness/skills/architecture-principles/SKILL.md
+
+Requirements:
+
+====================================================
+APP CONTEXT SKILL
+====================================================
+
+Purpose:
+
+Provide any Claude Code agent with the minimum knowledge required to understand StoreOps.
+
+Include:
+
+1. Business domain overview
+
+2. Module ownership and responsibilities
+
+- activities
+- programmes
+- staff
+- alerts
+- reports
+
+3. Architecture overview
+
+Routes -> Service -> Repository
+
+4. Shared infrastructure
+
+- EventBus
+- AppError hierarchy
+- Pydantic models
+- FastAPI application structure
+
+5. Dependency flow
+
+6. Existing testing framework
+
+7. Important repository paths
+
+8. Current coding standards found in the repository
+
+9. Reports module constraints
+
+Use actual repository content.
+Do not invent information.
+
+====================================================
+ARCHITECTURE PRINCIPLES SKILL
+====================================================
+
+Purpose:
+
+Encode the non-negotiable architecture governance rules for StoreOps.
+
+For each rule provide:
+
+- Rule ID
+- Description
+- Rationale
+- Allowed example
+- Prohibited example
+- Evaluation method
+- HARD FAIL? YES/NO
+
+Create rules for:
+
+RULE-001
+Routes may call Services only
+
+RULE-002
+Services own business logic
+
+RULE-003
+Repositories own persistence only
+
+RULE-004
+Cross-module repository imports prohibited
+
+RULE-005
+Cross-module side effects must use EventBus
+
+RULE-006
+Raw Exception or RuntimeError prohibited in Routes and Services
+
+RULE-007
+Reports module is read-only
+
+RULE-008
+Routes must not contain business logic
+
+RULE-009
+All externally visible failures must use AppError hierarchy
+
+RULE-010
+All new functionality requires automated tests
+
+For every rule use examples from the actual StoreOps codebase whenever possible.
+
+Mark all architecture-violation rules as HARD FAIL.
+
+Output only the two skill files.
+
+Do not modify application code.

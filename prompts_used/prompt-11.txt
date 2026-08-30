@@ -1,0 +1,29 @@
+Create:
+
+.harness/agents/monitor.agent.md
+
+Purpose:
+Capture governance and observability data after every sprint evaluation.
+
+Read:
+
+- evaluator-feedback.md
+- generator-summary.md
+
+Produce:
+
+.harness/reviews/run-log.md
+
+Include:
+
+- Sprint ID
+- Verdict
+- Iterations Used
+- Escalation Flag
+- Estimated Token Usage
+- Quality Trends
+- Suggested Skill Improvements
+
+The Monitor must never modify code.
+
+Output only monitor.agent.md.

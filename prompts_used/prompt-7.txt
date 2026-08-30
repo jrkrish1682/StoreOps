@@ -1,0 +1,210 @@
+Read:
+
+- docs/repository-assessment.md
+- all existing skill files under .harness/skills/
+- current StoreOps source code
+- current tests
+
+Create the following files:
+
+1. .harness/skills/how-to-review/SKILL.md
+2. .harness/skills/evaluation-rules/SKILL.md
+3. .harness/skills/sprint-decomposition/SKILL.md
+
+====================================================
+SKILL 1: HOW-TO-REVIEW
+====================================================
+
+Purpose:
+
+Teach the Evaluator how to review generated StoreOps code.
+
+Review process must be sequential:
+
+Step 1
+Review sprint contract
+
+Step 2
+Review generator-summary.md
+
+Step 3
+Review source code changes
+
+Step 4
+Review test coverage
+
+Step 5
+Run automated validation commands
+
+Step 6
+Apply architecture governance checks
+
+Step 7
+Determine verdict
+
+Review checklist must cover:
+
+- Architecture compliance
+- Dependency direction
+- EventBus usage
+- Error handling
+- AppError compliance
+- Route -> Service -> Repository layering
+- Testing completeness
+- Acceptance criteria traceability
+
+Require:
+
+- file-level feedback
+- line-level feedback when available
+- remediation guidance
+
+====================================================
+SKILL 2: EVALUATION-RULES
+====================================================
+
+Purpose:
+
+Convert non-deterministic LLM output into deterministic PASS/FAIL decisions.
+
+Create two weighted dimensions.
+
+Dimension A
+
+Architecture Compliance
+Weight: 50%
+
+Checks:
+
+- route-service-repository layering
+- no cross-module repository imports
+- EventBus required for side effects
+- reports module remains read-only
+- AppError usage
+- no business logic in routes
+
+Dimension B
+
+Engineering Quality
+Weight: 50%
+
+Checks:
+
+- pytest passes
+- mypy passes
+- ruff passes
+- business rule tests exist
+- acceptance criteria covered
+- code quality
+
+HARD FAIL CONDITIONS
+
+Any one causes FAIL:
+
+1.
+pytest failure
+
+2.
+ruff failure
+
+3.
+mypy failure
+
+4.
+cross-module repository import
+
+5.
+missing EventBus requirement
+
+6.
+reports module writes to another domain
+
+7.
+raw Exception or RuntimeError
+
+8.
+acceptance criteria unimplemented
+
+9.
+required tests missing
+
+Verdict Rules:
+
+PASS
+
+- all hard gates pass
+- score >= 90
+
+CONDITIONAL_PASS
+
+- all hard gates pass
+- score between 75 and 89
+
+FAIL
+
+- any hard gate fails
+OR
+- score below 75
+
+Require:
+
+- deterministic behavior
+- same checks produce same verdict
+
+====================================================
+SKILL 3: SPRINT-DECOMPOSITION
+====================================================
+
+Purpose:
+
+Teach Planner how to decompose StoreOps features.
+
+Sprint Contract Structure:
+
+Sprint ID
+
+Objective
+
+Modules Impacted
+
+Files Expected To Change
+
+Dependencies
+
+Architecture Constraints
+
+Acceptance Criteria
+
+Required Tests
+
+Completion Evidence
+
+Acceptance Criteria Format:
+
+GIVEN
+
+WHEN
+
+THEN
+
+All criteria must be objectively testable.
+
+Provide example using:
+
+PATCH /api/activities/bulk-status
+
+Include:
+
+- acceptance criteria
+- testing expectations
+- architecture constraints
+
+Require sprint sizes to be small enough for one Generator/Evaluator cycle.
+
+====================================================
+
+Do not create agents yet.
+
+Only create the three skill files.
+
+Use actual StoreOps terminology and architecture discovered from the repository.
