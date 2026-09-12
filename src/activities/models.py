@@ -101,3 +101,37 @@ class ActivityLog(ActivityLogBase):
     created_by: str | None = None
 
     model_config = {"from_attributes": True}
+
+
+# Bulk update models
+class BulkActivityStatusUpdate(BaseModel):
+    """Request model for bulk status update."""
+
+    activity_ids: list[str] = Field(...)
+    new_status: str = Field(...)  # Accept string to validate in service
+
+
+class BulkUpdateFailedItem(BaseModel):
+    """Failed item in bulk update response."""
+
+    activity_id: str
+    error_code: str
+    message: str
+
+
+class BulkUpdateSummary(BaseModel):
+    """Summary of bulk update operation."""
+
+    total: int
+    succeeded: int
+    failed: int
+
+
+class BulkActivityStatusUpdateResult(BaseModel):
+    """Response model for bulk status update."""
+
+    succeeded: list[Task]
+    failed: list[BulkUpdateFailedItem]
+    summary: BulkUpdateSummary
+
+    model_config = {"from_attributes": True}

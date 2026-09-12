@@ -1,0 +1,12 @@
+APPROVED
+
+Continue the StoreOps harness workflow exactly as defined in CLAUDE.md.
+
+Use the approved sprint contract under .harness/output/.
+
+Execute:
+
+Generator -> Evaluator -> Monitor
+
+Do not bypass any hard gate.
+Stop only on PASS or escalation.

@@ -10,7 +10,14 @@ Responsibilities:
 
 from fastapi import APIRouter, Depends, HTTPException, Query
 
-from src.activities.models import Task, TaskCreate, TaskList, TaskUpdate
+from src.activities.models import (
+    BulkActivityStatusUpdate,
+    BulkActivityStatusUpdateResult,
+    Task,
+    TaskCreate,
+    TaskList,
+    TaskUpdate,
+)
 from src.activities.service import ActivitiesService, get_activities_service
 from src.shared.errors import AppError
 
@@ -203,3 +210,33 @@ async def get_user_tasks(
         limit=limit,
     )
     return TaskList(**result)
+
+
+@router.patch(
+    "/bulk-status",
+    response_model=BulkActivityStatusUpdateResult,
+    status_code=200,
+)
+async def bulk_update_activity_status(
+    bulk_update: BulkActivityStatusUpdate,
+    service: ActivitiesService = Depends(get_activities_service),
+) -> BulkActivityStatusUpdateResult:
+    """Update status for multiple activities in bulk.
+
+    Args:
+        bulk_update: Bulk update request with activity IDs and new status
+        service: Activities service
+
+    Returns:
+        Bulk update result with succeeded/failed items and summary
+
+    Raises:
+        HTTPException: If validation fails
+    """
+    try:
+        return await service.bulk_update_activities(
+            activity_ids=bulk_update.activity_ids,
+            new_status=bulk_update.new_status,
+        )
+    except AppError as e:
+        raise HTTPException(status_code=e.status_code, detail=e.to_dict())
